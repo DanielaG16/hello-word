@@ -1,0 +1,924 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DanielaG16/hello-word/blob/master/Taller_1_Laura_Guzman\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "cmoz-XWrasEa"
+      },
+      "source": [
+        "# Studying Mathematics with Python\n",
+        "\n",
+        "## Welcome Aboard\n",
+        "\n",
+        "## Preface\n",
+        "\n",
+        "This handbook is an introduction to doing Mathematics with Open Source Software.\n",
+        "\n",
+        "One alternative to matlab, mathematica and maple is to use [sagemath](http://www.sagemath.org/). Sagemath is a fantastic collection of resources build on top of the open source programming language [Python](https://www.python.org/). However it is quite a large piece of software that can be difficult to install on Windows. There is a cloud based system [cloud.sagemath.com](https://cloud.sagemath.com/) but this requires a connection to the internet. Instead this notebook will describe the use of 3 lightweight Python libraries:\n",
+        "[wikipedia](https://en.wikipedia.org/wiki/Single-precision_floating-point_format)\n",
+        "\n",
+        "\n",
+        "1. [Sympy](01 - Symbolic mathematics with Sympy.ipynb) for carrying out symbolic mathematical calculations;\n",
+        "2. [Numpy](02 - Linear algebra with Numpy.ipynb) for dealing with large numeric arrays: perfect for linear algebra;\n",
+        "3. [Pandas](03 - Data analysis with Pandas.ipynb) a brilliant tool for data analysis.\n",
+        "\n",
+        "**Python and the above libraries are all free to use (and potentially change if you needed to!).** The recommended distribution of Python that includes a number of libraries for scientific work is Anaconda. If you have not yet installed Python on your machine go to the following link: https://www.continuum.io/downloads and follow the download instructions.\n",
+        "\n",
+        "**Note** that there is a choice between python 3 and python 2. **Python 3 is recommended and assumed in this handbook.**\n",
+        "\n",
+        "## Interacting with Python\n",
+        "\n",
+        "Once you have installed Anaconda, you will now have Python on your machine. You can interact with Python in multiple ways:\n",
+        "\n",
+        "### The Python shell\n",
+        "\n",
+        "- On Windows open a \"Command Prompt\":\n",
+        "\n",
+        "  \n",
+        "\n",
+        "This is a simple utility that allows you to give commands to your computer. In there type:\n",
+        "\n",
+        "```bash\n",
+        "python\n",
+        "```\n",
+        "\n",
+        "This should then look something like:\n",
+        "\n",
+        "```python\n",
+        "Python 3.5.2 |Anaconda 4.2.0 (64-bit)| (default, Jul  2 2016, 17:53:06)\n",
+        "[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux\n",
+        "Type \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n",
+        ">>>\n",
+        "```\n",
+        "\n",
+        "The `>>>` is a prompt for you to type a command. Let us carry out a straightforward addition:\n",
+        "\n",
+        "\n",
+        "```python\n",
+        ">>> 2 + 2\n",
+        "```\n",
+        "\n",
+        "and press `ENTER`:\n",
+        "\n",
+        "\n",
+        "```python\n",
+        ">>> 2 + 2\n",
+        "4\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "C-a_0SJNasEe"
+      },
+      "source": [
+        "**This is not a very efficient and practical way of using Python.** We will instead learn to use a [Jupyter notebook](http://jupyter.org/).\n",
+        "\n",
+        "### Jupyter notebooks\n",
+        "\n",
+        "If you are still in the Python shell (with a `>>>` waiting for you to give a command) then type:\n",
+        "\n",
+        "```python\n",
+        ">>> exit()\n",
+        "```\n",
+        "\n",
+        "This will leave the prompt and you will now be back at the Command Prompt or the Terminal window. Here simply type:\n",
+        "\n",
+        "```bash\n",
+        "jupyter notebook\n",
+        "```\n",
+        "\n",
+        "After a little moment this will open a Jupyter notebook page in a browser. Note that this is all just running on your computer and you do not need to be connected to the internet to use a Jupyter notebook.\n",
+        "\n",
+        "In your browser window you should have a tab that looks like the following:\n",
+        "\n",
+        "\n",
+        "\n",
+        "You can use that to navigate your directories/folders. When you are in a location that you want to use, **create a new notebook** by clicking on `New` (on the top right) and `Python ...`.\n",
+        "\n",
+        "These notebook are very versatil and powerful. You can write blocks of code in each cell and see the output. To execute code in a cell:\n",
+        "\n",
+        "- Click on \"play\" symbol;\n",
+        "- Press `SHIFT + ENTER`.\n",
+        "\n",
+        "#### Writing code in a Jupyter cell\n",
+        "\n",
+        "---\n",
+        "\n",
+        "**EXERCISE**: Create a cell and run the following:\n",
+        "\n",
+        "```python\n",
+        "2 + 2\n",
+        "```\n",
+        "---\n",
+        "\n",
+        "#### Writing text/mathematics in a Jupyter notebook\n",
+        "\n",
+        "It is also possible to write text with a markup language called [markdown](https://daringfireball.net/projects/markdown/basics) which can also include LaTeX. To do this you need to change the mode of a cell. There is a dropdown menu that lets you choose between:\n",
+        "\n",
+        "1. Markdown\n",
+        "2. Code\n",
+        "3. Raw NBConvert (not covered in this handbook)\n",
+        "4. Heading (not covering in this handbook)\n",
+        "\n",
+        "---\n",
+        "\n",
+        "**EXERCISE**: Create a **markdown** cell and type the following:\n",
+        "\n",
+        "```markdown\n",
+        "Here is a simple list of topics we will cover in this handbook:\n",
+        "\n",
+        "- Symbolic mathematics\n",
+        "- Linear algebra\n",
+        "- Basic data analysis\n",
+        "\n",
+        "Note that I can also use LaTeX:\n",
+        "\n",
+        "$$a x ^ 2 + b x + c$$\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "Bl6FFYtfasEf",
+        "outputId": "a890ddd0-084d-4fc6-da5e-9ca1716313fc"
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "10\n"
+          ]
+        }
+      ],
+      "source": [
+        "#Operador de asignación\n",
+        "a = 10\n",
+        "print(a)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "xuMt_BMmasEk"
+      },
+      "outputs": [],
+      "source": [
+        "b = 2\n",
+        "print(b)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "8shhBLwbasEl"
+      },
+      "source": [
+        "We have gone through an overview of using Jupyter, we will now move on to basic Python syntax.\n",
+        "\n",
+        "## Basic Python\n",
+        "\n",
+        "Python is a fully fledged professional programming language. Used across a wide number of sectors:\n",
+        "\n",
+        "- Commercial products like Dropbox, Instagram and others;\n",
+        "- Research areas like machine learning, astrophysics and others.\n",
+        "\n",
+        "It is not the intention of this handbook to give a strong grounding in Python as a programming language. There are a number of great resources for this which you can find here http://docs.python-guide.org/en/latest/intro/learning/\n",
+        "\n",
+        "We will go over some of the very basics here which if you have never used Python before will be enough to get you started.\n",
+        "\n",
+        "### Variables\n",
+        "\n",
+        "We can assign values to variables for future use:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "7fMop6BvasEl"
+      },
+      "outputs": [],
+      "source": [
+        "# Anything after a `#` will be ignored. This is what we call a 'comment'\n",
+        "a = 20  # Assigning a value to a\n",
+        "b = 21  # Assigning a value to b\n",
+        "a * b  # Calculating the product of a and b"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "sUludrtyasEl"
+      },
+      "outputs": [],
+      "source": [
+        "a / (a + b)  # Calculating a / (a + b)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "ums8ZAY5asEm"
+      },
+      "outputs": [],
+      "source": [
+        "a ** b  # Calculating a raised to the power of b"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "IMFpjEGXasEm"
+      },
+      "source": [
+        "---\n",
+        "**EXERCISE** For $a=15$ and $b=16$, use Python to find the values of the following:\n",
+        "\n",
+        "- $a\\times b$\n",
+        "- $a + b$\n",
+        "- $a - b$\n",
+        "- $\\frac{a}{a + b}$\n",
+        "- $a ^ b$\n",
+        "\n",
+        "---\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "Wq2ATB_EasEm",
+        "outputId": "eefd3b2e-4513-4843-815c-80e024fb0784"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "240"
+            ]
+          },
+          "execution_count": 3,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "a=15\n",
+        "b=16\n",
+        "a*b"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "syyozTeKasEn",
+        "outputId": "7309edb0-83a1-464e-8df9-6be120c78bbd"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "31"
+            ]
+          },
+          "execution_count": 4,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "a+b"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "hbmRApTBasEn",
+        "outputId": "ded9c128-a77e-4845-8496-4b08616734e5"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "-1"
+            ]
+          },
+          "execution_count": 5,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "a-b"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "6LcQ4o5gasEn",
+        "outputId": "f66f53ed-05d1-4337-e1bd-f303d39dde9e"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "0.4838709677419355"
+            ]
+          },
+          "execution_count": 6,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "(a/(a+b))"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "-rjF4TFQasEo",
+        "outputId": "d48051e8-4248-4fa8-d997-e49efeaa5314"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "6568408355712890625"
+            ]
+          },
+          "execution_count": 7,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "a**b"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ZtVLRNaCasEo"
+      },
+      "source": [
+        "### Functions\n",
+        "\n",
+        "Similar to variables we can create functions that can be easily reused."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "Fl-gI3MJasEo"
+      },
+      "outputs": [],
+      "source": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "yZN9YMnBasEo"
+      },
+      "outputs": [],
+      "source": [
+        "def proportion(a, b):\n",
+        "    \"\"\"\n",
+        "    We can use triple \" to describe what our function does.\n",
+        "\n",
+        "    Here for example: we're creating a function to calculate\n",
+        "    the proportion of a of a + b\n",
+        "    \"\"\"\n",
+        "    return a / (a + b)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "lU4bHuDhasEp"
+      },
+      "source": [
+        "We can read our description by typing:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "vV85sztCasEp"
+      },
+      "outputs": [],
+      "source": [
+        "proportion?"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "x0aves6LasEp"
+      },
+      "source": [
+        "We can **use** our function by passing it variables:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "-ofF2xBXasEp",
+        "outputId": "cb9b4ef7-d20a-4125-e010-264fa5af3ebb"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "0.4878048780487805"
+            ]
+          },
+          "execution_count": 5,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "proportion(20, 21)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "LHoKZnB-asEp",
+        "outputId": "6f81ec37-b414-452f-d2c3-5382211db024"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "0.75"
+            ]
+          },
+          "execution_count": 6,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "proportion(3, 1)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "sDRRZ1jUasEp"
+      },
+      "source": [
+        "---\n",
+        "\n",
+        "**EXERCISE** Create a function called \"exponent\" that raises $a$ to the power of $a + b$ and use it to calculate the following:\n",
+        "\n",
+        "- $3 ^ {(3 + 2)}$\n",
+        "- $2 ^ 6$\n",
+        "\n",
+        "---"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "OjVTuCILasEq",
+        "outputId": "00195ba5-7b03-4c0d-f700-b814d949ff75"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "243"
+            ]
+          },
+          "execution_count": 16,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "def exponent(a,b):\n",
+        "\n",
+        "    return a**(a+b)\n",
+        "\n",
+        "exponent(3,2)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "IMWGeTx3asEq",
+        "outputId": "2ae055f3-5325-40a0-eaab-7f504a89449c"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "64"
+            ]
+          },
+          "execution_count": 15,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "def exponent(a,b):\n",
+        "\n",
+        "    return b**(a*b)\n",
+        "\n",
+        "exponent(3,2)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "C81PWtz7asEq"
+      },
+      "source": [
+        "### Repeating things with for loops\n",
+        "\n",
+        "We can use a `for` loop to repeat bits of code with Python. For example the following will calculate:\n",
+        "\n",
+        "$$\\sum_{i=0}^9i = 0 + 1 + 2 +\\cdots + 9 $$"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "W9_X0mH1asEq",
+        "outputId": "92ed301b-632b-49a7-bb9b-06aa21d0205d"
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "i=0\n",
+            "total=0\n",
+            "i=1\n",
+            "total=1\n",
+            "i=2\n",
+            "total=3\n",
+            "i=3\n",
+            "total=6\n",
+            "i=4\n",
+            "total=10\n",
+            "i=5\n",
+            "total=15\n",
+            "i=6\n",
+            "total=21\n",
+            "i=7\n",
+            "total=28\n",
+            "i=8\n",
+            "total=36\n",
+            "i=9\n",
+            "total=45\n",
+            "i=10\n",
+            "total=55\n"
+          ]
+        },
+        {
+          "data": {
+            "text/plain": [
+              "55"
+            ]
+          },
+          "execution_count": 30,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "total = 0\n",
+        "for i in range(11):\n",
+        "    print(f\"i={i}\")\n",
+        "    total = total + i\n",
+        "    print(f\"total={total}\")\n",
+        "total"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "PhV8LpFYasEq"
+      },
+      "source": [
+        "There are a couple of things happening there:\n",
+        "\n",
+        "1. We're creating a variable `total` and assining it to have value `0`.\n",
+        "2. We are using `range(10)` which is a Python function to get a generator of numbers from `0` (inclusive) to `10` (exclusive).\n",
+        "3. The `for loop` simply repeats all the block of code that is indented.\n",
+        "4. The code that is repeated is `total = total + i` so we are incrementally adding `i` to `total`.\n",
+        "\n",
+        "We know that:\n",
+        "\n",
+        "$$\\sum_{i=0}^Ni=\\frac{N (N + 1)}{2}$$\n",
+        "\n",
+        "Let us verify this in our given case:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "5U_gpobtasEr",
+        "outputId": "731b8177-dd28-4346-9a7c-c1760aa08f67"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "execution_count": 31,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "N = 10\n",
+        "expected_sum = N * (N + 1) / 2\n",
+        "total == expected_sum"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "EK3gsFkaasEr"
+      },
+      "source": [
+        "The double `==` is used to check if two values are equal and creates what is called a `Boolean` variable.\n",
+        "\n",
+        "---\n",
+        "\n",
+        "**EXERCISE** For $N\\in\\{10, 20, 352\\}$ verify the following identity:\n",
+        "\n",
+        "$$\n",
+        "\\sum_{i=0}^Ni^2=\\frac{N(N + 1)(2N + 1)}{6}\n",
+        "$$\n",
+        "\n",
+        "\n",
+        "Bonus points if you use a function (or two!) :)\n",
+        "\n",
+        "---"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "kmQXca6aasEr",
+        "outputId": "bef32e9c-416b-4a2f-d403-a6d7e96145d4"
+      },
+      "outputs": [
+        {
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "execution_count": 45,
+          "metadata": {},
+          "output_type": "execute_result"
+        }
+      ],
+      "source": [
+        "def ejerciciosum(N):\n",
+        "    total1 = 0\n",
+        "    for i in range(N+1):\n",
+        "        #print(f\"i={i}\")\n",
+        "        total1 = total1 + i**2\n",
+        "        #print(f\"total={total1}\")\n",
+        "    sum1 = N * (N + 1)*(2*N+1) / 6\n",
+        "    return total1 == sum1\n",
+        "ejerciciosum(20)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "yRHhL8qgasEr"
+      },
+      "source": [
+        "## Summary\n",
+        "\n",
+        "This section has discussed:\n",
+        "\n",
+        "- Using Python via the shell and Jupyter;\n",
+        "- Writing code and markdown in Jupyter;\n",
+        "- Some basic features of writing Python code:\n",
+        "    - Variables;\n",
+        "    - Functions;\n",
+        "    - For loops."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "N-SISnjnasEr"
+      },
+      "source": [
+        "## Challenge\n",
+        "\n",
+        "+0.2 Points\n",
+        "\n",
+        "How much money in total does a person pay in rent (an apartment o house) during several years of renting, if the rent increases in a fixed percetange each year. For each year the rent is calculated based on what the person was paying in the last year.\n",
+        "\n",
+        "Calculate how much money a person paid in rent during all the years, if he/she starts to rent an apartment at 1 Millon pesos/month, and pays rent during 5 year. What about if he/she rents during 10 years. Let's consider that, in average, each year the rent increases about 5.7%.\n",
+        "\n",
+        "Methodology.\n",
+        "1. Define the variables for the problem\n",
+        "2. Mathematical model for the problem\n",
+        "3. Create a function in python to implement the model\n",
+        "4. Call the function in python to calculate"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "k8owXBl-asEs"
+      },
+      "source": [
+        "## SOLUCIÓN DEL CHALLENGE\n",
+        "1. Variables"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 9,
+      "metadata": {
+        "id": "iUW0eXOfasEs"
+      },
+      "outputs": [],
+      "source": [
+        "alquiler_inicial = 1000000\n",
+        "total_alquiler_5_anios=0\n",
+        "total_alquiler_5_anios=0\n",
+        "tasa_aumento_anual = 0.057\n",
+        "num_anios_5 = 5\n",
+        "num_anios_10 = 10\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "MRDRlaNFasEs"
+      },
+      "source": [
+        "2. Modelo Matematico del Problema\n",
+        "P \\rightarrow Indica los periodos\n",
+        "\n",
+        "$Periodo1\\rightarrow  P1=alquiler\\_inicial(1+\\frac{tasa\\_aumento\\_anual}{100})$\n",
+        "\n",
+        "$Periodo2\\rightarrow  P2=P1(1+\\frac{tasa\\_aumento\\_anual}{100})\\rightarrow  P2=alquiler\\_inicial(1+\\frac{tasa\\_aumento\\_anual}{100})*(1+\\frac{tasa\\_aumento\\_anual}{100})\\rightarrow  P2=(1+\\frac{tasa\\_aumento\\_anual}{100})^2$\n",
+        "\n",
+        "$Periodo3\\rightarrow  P3=P2(1+\\frac{tasa\\_aumento\\_anual}{100})\\rightarrow  P3=alquiler\\_inicial(1+\\frac{tasa\\_aumento\\_anual}{100})*(1+\\frac{tasa\\_aumento\\_anual}{100})*(1+\\frac{tasa\\_aumento\\_anual}{100})\\rightarrow  P3=(1+\\frac{tasa\\_aumento\\_anual}{100})^3$\n",
+        "\n",
+        ".\n",
+        "\n",
+        ".\n",
+        "\n",
+        ".\n",
+        "\n",
+        "$Periodo5\\rightarrow  P5=(1+\\frac{tasa\\_aumento\\_anual}{100})^5$\n",
+        "\n",
+        ".\n",
+        "\n",
+        ".\n",
+        "\n",
+        ".\n",
+        "\n",
+        "$Periodo10\\rightarrow  P10=(1+\\frac{tasa\\_aumento\\_anual}{100})^{10}$\n",
+        "\n",
+        "Para cualquier año se realiza la sumatoria siguiente:\n",
+        "\n",
+        "$$\\sum_{i=0}^N(1+\\frac{tasa\\_aumento\\_anual}{100})^{N}$$"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "oeEePA-OasEs"
+      },
+      "source": [
+        "3. Función en Python para implementar el modelo"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 10,
+      "metadata": {
+        "id": "JFJyBWK_asEs"
+      },
+      "outputs": [],
+      "source": [
+        "def calcular_total_alquiler(alquiler_inicial, tasa_aumento_anual, num_anios):\n",
+        "    total_alquiler = 0\n",
+        "    alquiler_actual = alquiler_inicial\n",
+        "\n",
+        "    for anio in range(1, num_anios + 1):\n",
+        "        total_alquiler += alquiler_actual\n",
+        "        alquiler_actual *= (1 + tasa_aumento_anual / 100)\n",
+        "\n",
+        "    return total_alquiler\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "6s0iIRKhasEs"
+      },
+      "source": [
+        "4. Llame a la función en Python para calcular, la función creada es \"calcular_total_alquiler\""
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 12,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "cHWuh4RkasEt",
+        "outputId": "57607a99-57ac-486a-a03f-2e7e56765c53"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Total del alquiler para 5 años: $5005703.249926071 pesos, y para 10 años: $10025689.02691714 pesos\n"
+          ]
+        }
+      ],
+      "source": [
+        "total_alquiler_5_anios = calcular_total_alquiler(alquiler_inicial, tasa_aumento_anual, num_anios_5)\n",
+        "total_alquiler_10_anios = calcular_total_alquiler(alquiler_inicial, tasa_aumento_anual, num_anios_10)\n",
+        "\n",
+        "print(f\"Total del alquiler para 5 años: ${total_alquiler_5_anios} pesos, y para 10 años: ${total_alquiler_10_anios} pesos\")\n"
+      ]
+    }
+  ],
+  "metadata": {
+    "anaconda-cloud": {},
+    "kernelspec": {
+      "display_name": "Python 3 (ipykernel)",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.11.5"
+    },
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
